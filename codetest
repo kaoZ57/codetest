@@ -25,3 +25,15 @@ func main() {
 	fmt.Printf("big file : %v\n", len(BIG))
 	fmt.Println("Run time : ", time.Since(start))
 }
+
+func getDrives() (r []string) {
+	for _, drive := range "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
+		f, err := os.Open(string(drive) + ":\\")
+		if err == nil {
+			d := string(drive) + ":/"
+			r = append(r, d)
+			f.Close()
+		}
+	}
+	return
+}
